@@ -1,8 +1,9 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 const winston = require('winston');
+require('dotenv').config(); 
 const app = express();
-const port = 3000; // You can choose any available port
+const port = process.env.PORT || 3000;
 
 // Create a Winston logger instance
 const logger = winston.createLogger({
