@@ -36,15 +36,6 @@ app.get('/', async (req, res) => {
   const btnSelector = '.pc-image-info-box-button-btn.photo_vote.pc-show';
   await page.waitForSelector(btnSelector);
 
-  // Use page.evaluate to extract the value or text content
-  const elementValue = await page.evaluate(() => {
-    // Replace '.example-element' with your element selector
-    const element = document.querySelector('.pc-image-info-box-button-btn.photo_vote.pc-show');
-    console.log(element.textContent);
-    // Extract the value or text content of the element
-    return element.textContent; // or element.value for input elements
-  });
-
   // Click on the button
   await page.click(btnSelector);
   logger.info('Button Clicked.');
