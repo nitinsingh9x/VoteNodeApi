@@ -35,8 +35,15 @@ app.get('/', async (req, res) => {
   // Wait for the button to appear (you may need to customize this selector)
   const btnSelector = '.pc-image-info-box-button-btn.photo_vote.pc-show';
 
-  const timestamp = new Date().toISOString();
-  await page.screenshot({ path: `screenshot-${timestamp}.png` });
+   // Scroll to the element
+   await page.evaluate((btnSelector) => {
+    const element = document.querySelector(btnSelector);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, btnSelector);
+
+  
   await page.waitForSelector(btnSelector);
 
   // Click on the button
