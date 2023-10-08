@@ -24,7 +24,21 @@ const logger = winston.createLogger({
 app.get('/', async (req, res) => {
     try {
       // Launch a headless browser
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ 
+      headless: true, args: [ '--no-sandbox',
+      '--disable-setuid-sandbox', 
+      '--disable-dev-shm-usage', 
+      '--disable-accelerated-2d-canvas', 
+      '--no-first-run', 
+      '--no-zygote',
+      '--disable-gpu', 
+      '--disable-software-rasterizer',
+      '--disable-web-security', 
+      '--disable-popup-blocking', 
+      '--ignore-certificate-errors',
+      '--allow-insecure-localhost', 
+    ], 
+  });
 
   // Create a new page
   const page = await browser.newPage();
